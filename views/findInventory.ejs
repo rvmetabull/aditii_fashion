@@ -1,0 +1,170 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/js/odometer.min.js"></script>
+  <link rel="stylesheet" href="/styles/odometer-theme-car.css">
+</head>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" style="color:rebeccapurple"><i>The House of Aditii</i></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/add-inventory"><span class="glyphicon glyphicon-plus" style="color:cyan"></span> Add
+          Inventory</a></li>
+      <li class="active"><a href="/find-inventory"><span class="glyphicon glyphicon-search" style="color:cyan"></span> Search Inventory</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-download" style="color:cyan"></span> Download
+          Excel Sheets</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-log-in" style="color:cyan"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+<table>
+  <tr>
+    <td>
+      <!--<input type="text" id="quickFilterInput" placeholder="Type text to filter..."/>-->
+    </td>
+    <td>
+      <input id="exportBtn" type="button" class="btn btn-success btn-sm" value="Export to CSV" onclick="onBtExport();"/>
+    </td>
+    <td>
+      <b>Rows:
+        <div id="odometer" class="odometer">0</div>
+      </b>
+    </td>
+  </tr>
+
+</table>
+
+<div style="width: 120%; height: 575px;"
+     id="myGrid"
+     class="ag-blue ag-basic">
+</div>
+</body>
+</html>
+
+<script>
+  var list = [];
+  $.ajax({
+    url: "/find-inventory-query",
+    async: false,
+    type: "GET",
+    success: function (result) {
+      list = result;
+    }
+  });
+  var columnDefs = [
+    {headerName: "", field: "actions",  width: 20, editable:false},
+    {headerName: "No.", field: "serial",  width: 60, editable:false},
+    {headerName: "upid", field: "upid",  width: 60, editable:false},
+    {headerName: "Style Code", field: "styleCode", headerGroup: "",  width: 140, editable:true},
+    {headerName: "Color", field: "color", headerGroup: "",  width: 90, editable:true},
+    {headerName: "Name", field: "name", headerGroup: "",  width: 260, editable:true},
+    {headerName: "Size", field: "size", headerGroup: "",  width: 60, editable:true},
+    {headerName: "Length(inch)", field: "length", headerGroup: "",  width: 103, editable:true},
+    {headerName: "Buying Price", field: "buying_price", headerGroup: "",  width: 105, editable:true,filter: 'number'},
+    {headerName: "Expected Price", field: "expected_sale_price", headerGroup: "",  width: 120, editable:true,filter: 'number'},
+    {headerName: "Units", field: "units", headerGroup: "",  width: 65, editable:true,filter: 'number'},
+    {headerName: "Description", field: "description", headerGroup: "",  width: 400, editable:true},
+    {headerName: "Category", field: "level2_category", headerGroup: "",  width: 90, editable:true},
+    {headerName: "Sub Category", field: "level3_category", headerGroup: "",  width: 110, editable:true},
+    {headerName: "Material", field: "material", headerGroup: "",  width: 110, editable:true},
+    {headerName: "Source Shop", field: "source_shop", headerGroup: "",  width: 110, editable:true},
+    {headerName: "Photoshoot Done", field: "photoshoot_done", headerGroup: "",  width: 140, editable:true},
+    {headerName: "Photoshoot Done At", field: "photoshoot_done_at", headerGroup: "",  width: 150, editable:true}
+  ];
+
+  var rowData = [];
+
+  for(var i=0; i < list.length; i++) {
+    var row = list[i];
+    rowData.push({
+      serial: i+1,
+      styleCode: row.style_code,
+      upid: row.upid,
+      material: row.material,
+      color: row.color,
+      name: row.name,
+      size: row.size,
+      length: row.length,
+      buying_price: row.buying_price,
+      expected_sale_price: row.expected_sale_price,
+      units: row.units,
+      description: row.description,
+      level2_category: row.level2_category,
+      level3_category: row.level3_category,
+      source_shop: row.source_shop,
+      photoshoot_done: row.photoshoot_done,
+      photoshoot_done_at: row.photoshoot_done_at,
+      actions: "<a href=\"" + "add-inventory/" + row.upid + "\"><span class=\"glyphicon glyphicon-edit\"></span></a>"
+    });
+  }
+
+  var gridOptions = {
+    columnDefs: columnDefs,
+    rowData: rowData,
+    rowSelection: 'multiple',
+    enableColResize: true,
+    enableSorting: true,
+    enableFilter: true,
+    groupHeaders: true,
+    rowHeight: 22,
+    //pinnedColumnCount: 3,
+    onModelUpdated: modelUpdatedHandler,
+    debug: false,
+    suppressRowClickSelection: true,
+    showToolPanel: true
+  };
+
+  // wait for the document to be loaded, otherwise
+  // ag-Grid will not find the div in the document.
+  document.addEventListener("DOMContentLoaded", function () {
+    var eGridDiv = document.querySelector('#myGrid');
+    new ag.grid.Grid(eGridDiv, gridOptions);
+  });
+
+  function addQuickFilterListener() {
+    var eInput = document.querySelector('#quickFilterInput');
+    eInput.addEventListener("input", function () {
+      var text = eInput.value;
+      gridOptions.api.setQuickFilter(text);
+    });
+  }
+
+  function modelUpdatedHandler() {
+    var model = gridOptions.api.getModel();
+    var processedRows = model.getVirtualRowCount();
+    setTimeout(function () {
+      odometer.innerHTML = processedRows;
+    }, 100);
+  }
+
+  function cellNewValueHandler(params) {
+    params.data[params.colDef.field] = params.oldValue;
+  }
+
+  function clearFilters() {
+    gridOptions.api.setFilterModel(null);
+    gridOptions.api.onFilterChanged();
+  }
+
+  function onBtExport() {
+    var params = {
+      fileName: "inventory.csv"
+    };
+
+    gridOptions.api.exportDataAsCsv(params);
+  };
+
+  document.getElementById("exportBtn").onclick = onBtExport;
+  document.getElementById("clearFiltersBtn").onclick = clearFilters;
+  gridOptions.api.addEventListener("modelUpdated", modelUpdatedHandler);
+
+</script>

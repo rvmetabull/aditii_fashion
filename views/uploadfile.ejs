@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" style="color:rebeccapurple"><i>The House of Aditii</i></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/add-inventory"><span class="glyphicon glyphicon-plus" style="color:cyan"></span> Add Inventory</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-search" style="color:cyan"></span> Search Inventory</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-download" style="color:cyan"></span> Download Excel Sheets</a></li>
+      <li class="active"><a href="/upload-file"><span class="glyphicon glyphicon-upload" style="color:cyan"></span> Upload</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-log-in" style="color:cyan"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- enctype="multipart/form-data" -->
+<form id="uploadForm"
+      enctype="multipart/form-data"
+      action="/file/upload"
+      method="post">
+  <input type="file" name="uploadFile" />
+  <input type="submit" value="submit"/>
+</form>

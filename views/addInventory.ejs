@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<script type="text/javascript">
+  $(window).load(function () {
+    $('#myModal').modal('show');
+  });
+</script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" style="color:rebeccapurple"><i>The House of Aditii</i></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/add-inventory"><span class="glyphicon glyphicon-plus" style="color:cyan"></span> Add
+          Inventory</a></li>
+      <li class="active"><a href="/find-inventory"><span class="glyphicon glyphicon-search" style="color:cyan"></span>
+          Search Inventory</a></li>
+      <li class="active"><a href="#"><span class="glyphicon glyphicon-download" style="color:cyan"></span> Download
+          Excel Sheets</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-log-in" style="color:cyan"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+     data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a Product</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <form class="form-horizontal">
+          <fieldset>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="styleCode">Style Code</label>
+              <div class="col-md-4">
+                <input id="styleCode" name="styleCode" type="text" placeholder="example AFUDWE 02001"
+                       class="form-control input-md" required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productName">Name</label>
+              <div class="col-md-7">
+                <input id="productName" name="productName" type="text" placeholder="Magenta Color Shiffon Top"
+                       class="form-control input-md" required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productDescription">Description</label>
+              <div class="col-md-8">
+                <input id="productDescription" name="productDescription" type="text"
+                       placeholder="Dimond Work on Neck Sleeveless ,Layered Top" class="form-control input-md"
+                       required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="buyCost">Buying Cost</label>
+              <div class="col-md-4">
+                <input id="buyCost" name="buyCost" type="text" placeholder="Actual cost" class="form-control input-md"
+                       required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="netExpectedAmount">Net Expected Amount</label>
+              <div class="col-md-4">
+                <input id="netExpectedAmount" name="netExpectedAmount" type="text" placeholder="Actual Cost + Profit"
+                       class="form-control input-md" required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="length">Length (in Inch)</label>
+              <div class="col-md-2">
+                <input id="length" name="length" type="text" placeholder="24" class="form-control input-md" required="">
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="material">Material</label>
+              <div class="col-md-4">
+                <select id="material" name="material" class="form-control">
+                  <option value="Shiffon">Shiffon</option>
+                  <option value="Cotton">Cotton</option>
+                  <option value="Georgette">Georgette</option>
+                  <option value="Net">Net</option>
+                  <option value="Polyester">Polyester</option>
+                  <option value="Rayon">Rayon</option>
+                  <option value="Poly Crepe">Poly Crepe</option>
+                  <option value="Handloom cotton">Handloom cotton</option>
+                  <option value="Silk">Silk</option>
+                  <option value="Woolen">Woolen</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productColor">Color</label>
+              <div class="col-md-4">
+                <select id="productColor" name="productColor" class="form-control">
+                  <option value="Red">Red</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Navy Blue">Navy Blue</option>
+                  <option value="Multicolour">Multicolour</option>
+                  <option value="Green">Green</option>
+                  <option value="Magenta">Magenta</option>
+                  <option value="Pink">Pink</option>
+                  <option value="Purple">Purple</option>
+                  <option value="Maroon">Maroon</option>
+                  <option value="Peach">Peach</option>
+                  <option value="Cream">Cream</option>
+                  <option value="Fawn">Fawn</option>
+                  <option value="Orange">Orange</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Lemon">Lemon</option>
+                  <option value="White">White</option>
+                  <option value="Brown">Brown</option>
+                  <option value="Black">Black</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="level1_category">Level1 Category</label>
+              <div class="col-md-4">
+                <select id="level1_category" name="level1_category" class="form-control">
+                  <option value="clothing">Clothing</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="level2_category">Level2 Category</label>
+              <div class="col-md-4">
+                <select id="level2_category" name="level2_category" class="form-control">
+                  <option value="Bottom">Bottom</option>
+                  <option value="Ethnic">Ethnic</option>
+                  <option value="Western">Western</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="level3_category">Level3 Category</label>
+              <div class="col-md-4">
+                <select id="level3_category" name="level3_category" class="form-control">
+                  <option value="Kurta">Kurta</option>
+                  <option value="Top">Top</option>
+                  <option value="Shirt">Shirt</option>
+                  <option value="Dress">Dress</option>
+                  <option value="Plazzo">Plazzo</option>
+                  <option value="Legging">Legging</option>
+                  <option value="Lower">Lower</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="photoshoot_done">Photoshoot Done</label>
+              <div class="col-md-4">
+                <select id="photoshoot_done" name="photoshoot_done" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Not Required">Not Required</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="photoshoot_done_at">Photoshoot Done At</label>
+              <div class="col-md-4">
+                <input id="photoshoot_done_at" name="photoshoot_done_at" type="text" class="form-control input-md">
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="care">Care</label>
+              <div class="col-md-6">
+                <select id="care" name="care" class="form-control">
+                  <option value="Normal Hand Wash">Normal Hand Wash</option>
+                  <option value="Machine Wash">Machine Wash</option>
+                  <option value="Dryclean only">Dryclean only</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="sourceShop">Source Shop</label>
+              <div class="col-md-6">
+                <input id="sourceShop" name="length" type="text" class="form-control input-md">
+              </div>
+            </div>
+
+            <!-- Multiple Checkboxes -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="freeSizeAvailable">Free Size?</label>
+              <div class="col-md-4">
+                <div class="checkbox">
+                  <label for="freeSizeAvailable-0">
+                    <input type="checkbox" name="freeSizeAvailable" id="freeSizeAvailable" value="1">
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" id="sizeStocksDiv">
+              <div class="form-group">
+                <label class="col-md-4 control-label">S</label>
+                <div class="col-md-2">
+                  <input id="smallStock" name="smallStock" type="text" class="form-control input-md"
+                         placeholder="Blank if not available" value=-1>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">M</label>
+                <div class="col-md-2">
+                  <input id="mediumStock" name="mediumStock" type="text" class="form-control input-md"
+                         placeholder="Blank if not available" value=-1>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">L</label>
+                <div class="col-md-2">
+                  <input id="largeStock" name="largeStock" type="text" class="form-control input-md"
+                         placeholder="Blank if not available" value=-1>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">XL</label>
+                <div class="col-md-2">
+                  <input id="xlStock" name="xlStock" type="text" class="form-control input-md"
+                         placeholder="Blank if not available" value=-1>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" id="freeSizeStockDiv" style="display:none">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Free Size</label>
+                <div class="col-md-2">
+                  <input id="freeSizeStock" name="freeSizeStock" type="text" class="form-control input-md"
+                         placeholder="Blank if not available" value=-1>
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <div class="alert alert-success" id="success_alert">
+            <strong>Success!</strong> Indicates a successful or positive action.
+          </div>
+
+        </form>
+
+
+        <script>
+          function populateEditableModal() {
+            if (<%= populate %> ===
+            true
+          )
+            {
+              $('#productName').val('<%= name %>');
+              $('#styleCode').val('<%= style_code %>');
+              $('#productDescription').val('<%= description %>');
+              $('#buyCost').val('<%= buying_price %>');
+              $('#netExpectedAmount').val('<%= expected_sale_price %>');
+              $('#length').val('<%= length %>');
+              $('#photoshoot_done_at').val('<%= photoshoot_done_at %>');
+              $('#sourceShop').val('<%= source_shop %>');
+
+              $("#level2_category").val('<%= level2_category %>');
+              $("#level3_category").val('<%= level3_category %>');
+              $("#photoshoot_done").val('<%= photoshoot_done %>');
+              $("#material").val('<%= material %>');
+              $("#productColor").val('<%= color %>');
+              $("#care").val('<%= care %>');
+
+              $("#smallStock").val(<%= stocks.S %>);
+              $("#mediumStock").val(<%= stocks.M %>);
+              $("#largeStock").val(<%= stocks.L %>);
+              $("#xlStock").val(<%= stocks.XL %>);
+              $("#freeSizeStock").val(<%= stocks.freeSize %>);
+
+              $("#freeSizeAvailable").prop('checked', <%= freeSizeAvailable %>);
+              if ($("#freeSizeAvailable").is(':checked')) {
+                $("#freeSizeStockDiv").show();
+                $("#sizeStocksDiv").hide();
+              }
+              else {
+                $("#freeSizeStockDiv").hide();
+                $("#sizeStocksDiv").show();
+              }
+            }
+          }
+        </script>
+
+        <script>
+          $(document).ready(function () {
+            populateEditableModal();
+            $("#success_alert").hide();
+
+            $("#freeSizeAvailable").change(function () {
+              if ($("#freeSizeAvailable").is(':checked')) {
+                $("#freeSizeStockDiv").show();
+                $("#sizeStocksDiv").hide();
+              }
+              else {
+                $("#freeSizeStockDiv").hide();
+                $("#sizeStocksDiv").show();
+              }
+            });
+
+            $("#save").click(function () {
+              var data = {};
+              data['styleCode'] = $("#styleCode").val();
+              data['productName'] = $("#productName").val();
+              data['productDescription'] = $("#productDescription").val();
+              data['buyCost'] = $("#buyCost").val();
+              data['netExpectedAmount'] = $("#netExpectedAmount").val();
+              data['length'] = $("#length").val();
+              data['material'] = $("#material").val();
+              data['productColor'] = $("#productColor").val();
+              data['care'] = $("#care").val();
+              data['sourceShop'] = $("#sourceShop").val();
+              data['level1_category'] = $("#level1_category").val();
+              data['level2_category'] = $("#level2_category").val();
+              data['level3_category'] = $("#level3_category").val();
+              data['photoshoot_done'] = $("#photoshoot_done").val();
+              data['photoshoot_done_at'] = $("#photoshoot_done_at").val();
+              data['freeSizeAvailable'] = $("#freeSizeAvailable").is(':checked');
+              var stocks = {};
+              var s = -1, l = -1, m = -1, xl = -1, free = -1;
+              if ($("#freeSizeAvailable").is(':checked')) {
+                free = $("#freeSizeStock").val();
+
+              } else {
+                s = $("#smallStock").val();
+                m = $("#mediumStock").val();
+                l = $("#largeStock").val();
+                xl = $("#xlStock").val();
+              }
+              stocks['s'] = s;
+              stocks['m'] = m;
+              stocks['l'] = l;
+              stocks['xl'] = xl;
+              stocks['freeSize'] = free;
+              data['stocks'] = stocks;
+              $.ajax({
+                url: "/save-inventory-query",
+                type: "POST",
+                data: {
+                  data
+                },
+                success: function (result) {
+                  console.log("Add a product success for data=" + data);
+                  $("#success_alert").show();
+                  alert("success")
+                },
+                error: function (err) {
+                  console.log("Add a product failed for data=" + JSON.stringify(data) + " and error=" + JSON.stringify(err));
+                  alert("Could not save product. RETRY")
+                }
+              });
+            });
+          });
+
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="save">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
